@@ -1,0 +1,19 @@
+name: Update registry.yaml
+
+on:
+  release:
+    types: [published]
+ 
+jobs:
+  update-registry:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: update registry.yaml
+        run: |
+          env
+          echo "  - name: hello" >> registry.yaml
+          echo "    url: https://github.com/g2a-com/klio-example-command/releases/download/1.0.0/hello-${{github.ref}}.tar.gz" >> registry.yaml
+          echo "    version: " >> registry.yaml
+          echo registry.yaml
